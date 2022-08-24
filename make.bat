@@ -1,0 +1,1 @@
+gcc *.c -lws2_32 -m32  -finput-charset=UTF-8 -fexec-charset=GBK -static -fPIC -shared -o core.dll
