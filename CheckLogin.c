@@ -208,7 +208,7 @@ int CL_ReloadWhiteList()
     {
         fp = fopen(Whitelist_file, "w");
         // printf("无法读取白名单文件,原因是:%s\n", strerror(errno));
-        // log_warn("无法读取白名单文件,原因是:%s", strerror(errno));
+        logout(LOG_ERROR,"无法读取白名单文件,原因是:%s", strerror(errno));
         ReleaseMutex(lock);
         return -1;
     }
@@ -255,7 +255,8 @@ int CL_LoadBanList()
     if (fp == NULL)
     {
         // printf("无法读取封禁列表,原因是:%s\n", strerror(errno));
-        // log_warn("无法读取封禁列表,原因是:%s", strerror(errno));
+        logout(LOG_ERROR,"无法读取封禁列表,原因是:%s", strerror(errno));
+        log()
         ReleaseMutex(lock);
         return -1;
     }
@@ -331,7 +332,7 @@ int CL_WhiteListAdd(const char *playername)
     if (-1 == Save(Whitelist_file, Whitelist_head))
     {
         // printf("写入白名单文件失败，原因是%s,本次更改将在程序重启后失效\n", strerror(errno));
-        // log_warn("写入白名单文件失败，原因是%s,本次更改将在程序重启后失效", strerror(errno));
+        logout(LOG_ERROR,"写入白名单文件失败，原因是%s,本次更改将在程序重启后失效", strerror(errno));
     }
     return 0;
 }
@@ -375,7 +376,7 @@ int CL_WhiteListRemove(const char *playername)
     if (-1 == Save(Whitelist_file, Whitelist_head))
     {
         // printf("写入白名单文件失败，原因是%s,本次更改将在程序重启后失效\n", strerror(errno));
-        // log_warn("写入白名单文件失败，原因是%s,本次更改将在程序重启后失效", strerror(errno));
+        logout(LOG_ERROR,"写入白名单文件失败，原因是%s,本次更改将在程序重启后失效", strerror(errno));
     }
     return 0;
 }
@@ -404,7 +405,7 @@ int CL_BanListAdd(const char *playername)
     if (-1 == Save(Banlist_file, Ban_head))
     {
         // printf("写入封禁列表文件失败，原因是%s,本次更改将在程序重启后失效\n", strerror(errno));
-        // log_warn("写入封禁列表文件失败，原因是%s,本次更改将在程序重启后失效", strerror(errno));
+        logout(LOG_ERROR,"写入封禁列表文件失败，原因是%s,本次更改将在程序重启后失效", strerror(errno));
     }
     return 0;
 }
@@ -445,7 +446,7 @@ int CL_BanListRemove(const char *playername)
     if (-1 == Save(Banlist_file, Ban_head))
     {
         // printf("写入封禁列表文件失败，原因是%s,本次更改将在程序重启后失效\n", strerror(errno));
-        // log_warn("写入封禁列表文件失败，原因是%s,本次更改将在程序重启后失效", strerror(errno));
+        logout(LOG_ERROR,"写入封禁列表文件失败，原因是%s,本次更改将在程序重启后失效", strerror(errno));
     }
     return 0;
 }
