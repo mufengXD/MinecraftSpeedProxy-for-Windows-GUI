@@ -19,7 +19,7 @@ jobs:
           disk-root: "D:"
 
       - name: Set Environment
-        run: powershell (new-object Net.WebClient).DownloadFile('https://github.com/SkyTeamWater/res/releases/download/v1.0.0e/e.zip','D:\e.zip') && powershell (new-object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/SkyTeamWater/res/v1.0.0e/ecl.exe','D:\ecl.exe') && expand -F:* D:\e.zip D:\e\ && D:\ecl.exe set epath "D:\e\e.exe" 
+        run: powershell (new-object Net.WebClient).DownloadFile('https://github.com/SkyTeamWater/res/releases/download/v1.0.0e/e.zip','D:\e.zip') && powershell (new-object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/SkyTeamWater/res/v1.0.0e/ecl.exe','D:\ecl.exe') && expand -F:* D:\e.zip D:\ && D:\ecl.exe set epath "D:\e\e.exe" 
       
       - name: Build
         run: make.bat && D:\ecl make "e\MinecraftSpeedProxy.e" "MinecraftSpeedProxy.exe"
